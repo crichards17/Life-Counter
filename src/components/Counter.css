@@ -1,0 +1,41 @@
+.counter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Adjust width as needed */
+  height: 100%; /* Adjust height as needed */
+  margin: 10px 0; /* Space between counters */
+  position: relative;
+  user-select: none;
+  border: 1px solid #000;
+  box-sizing: border-box;
+}
+
+.button-section {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.3s ease;
+}
+
+.button-section:hover {
+  background-color: rgba(0, 0, 0, 0.2); /* Slightly darker on hover */
+}
+
+.button-section.center:hover {
+  background-color: rgba(0, 0, 0, 0);
+  cursor: default;
+}
+
+.center-count {
+  font-size: 10vw;
+  font-weight: bold;
+  color: #333;
+  z-index: 2;
+  pointer-events: none;
+}

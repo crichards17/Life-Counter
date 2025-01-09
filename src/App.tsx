@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import Counter from "./components/Counter";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [counts, setCounts] = useState([0, 0, 0, 0]); // State for 4 counters
+
+  // Function to reset all counts to zero
+  const resetCounts = () => {
+    setCounts([0, 0, 0, 0]);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="App">
+      <div className="reset-button-container">
+        <button className="reset-button" onClick={resetCounts}>
+          Reset
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more.
-      </p>
-    </>
-  )
+      <div className="counter-grid">
+        {counts.map((count, index) => (
+          <Counter
+            key={index}
+            count={count}
+            setCount={(newCount) => {
+              const newCounts = [...counts];
+              newCounts[index] = newCount;
+              setCounts(newCounts);
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
