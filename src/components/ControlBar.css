@@ -1,0 +1,28 @@
+.reset-bar {
+  grid-row: 2; /* place in the middle row of the app grid */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none; /* allow underlying controls if needed */
+  z-index: 10;
+  padding: 12px 0;
+}
+
+.reset-bar-inner {
+  pointer-events: auto; /* enable interactions inside the bar */
+  background: rgba(255,255,255,0.9);
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.reset-button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #999;
+  background: #fff;
+  cursor: pointer;
+}

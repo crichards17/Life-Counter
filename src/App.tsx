@@ -1,33 +1,50 @@
 import { useState } from "react";
 import Counter from "./components/Counter";
+import ControlBar from "./components/ControlBar";
 import "./App.css";
 
 function App() {
-  const [counts, setCounts] = useState([0, 0, 0, 0]); // State for 4 counters
+  const [startingLife, setStartingLife] = useState([40, 40, 40, 40]);
+  const [counts, setCounts] = useState(startingLife); // State for 4 counters
 
   // Function to reset all counts to zero
   const resetCounts = () => {
-    setCounts([0, 0, 0, 0]);
+    setCounts(startingLife);
   };
+
+  
 
   return (
     <div className="App">
-      <div className="reset-button-container">
-        <button className="reset-button" onClick={resetCounts}>
-          Reset
-        </button>
+      <ControlBar onReset={resetCounts} />
+
+      <div className="top-row">
+        {counts.slice(0, 2).map((count, index) => (
+          <div className="top-counter" key={index}>
+            <Counter
+              count={count}
+              setCount={(newCount) => {
+                const newCounts = [...counts];
+                newCounts[index] = newCount;
+                setCounts(newCounts);
+              }}
+            />
+          </div>
+        ))}
       </div>
-      <div className="counter-grid">
-        {counts.map((count, index) => (
-          <Counter
-            key={index}
-            count={count}
-            setCount={(newCount) => {
-              const newCounts = [...counts];
-              newCounts[index] = newCount;
-              setCounts(newCounts);
-            }}
-          />
+
+      <div className="bottom-row">
+        {counts.slice(2, 4).map((count, i) => (
+          <div className="bottom-counter" key={i + 2}>
+            <Counter
+              count={count}
+              setCount={(newCount) => {
+                const newCounts = [...counts];
+                newCounts[i + 2] = newCount;
+                setCounts(newCounts);
+              }}
+            />
+          </div>
         ))}
       </div>
     </div>
